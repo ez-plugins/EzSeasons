@@ -29,6 +29,6 @@ jobs:
           server-password: GITHUB_TOKEN
 
       - name: Publish Maven artifacts
-        run: mvn -B -ntp -DskipTests deploy -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/${{ github.repository }}
+        run: mvn -B -ntp -DskipTests deploy -DaltDeploymentRepository=github::https://maven.pkg.github.com/${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
