@@ -1,71 +1,94 @@
-[size=6][b]EzSeasons[/b][/size]
-[size=4]Standalone season reset scheduler for Minecraft servers[/size]
+[SIZE=6][B]EzSeasons[/B][/SIZE]
+[SIZE=4]Reset Minecraft plugin - season reset scheduler for Bukkit/Paper[/SIZE]
 
-[hr]
+[B]Short Description / SEO[/B]
+Looking for a reliable reset Minecraft plugin or season reset scheduler? EzSeasons automates server wipes and season resets with flexible scheduling, reminder broadcasts, and developer hooks for integrations. Ideal for survival networks, SkyBlock servers and any community that runs periodic wipes.
 
-[b]Implemented Features[/b]
-[list]
-[*] Automatic season reset scheduling
-[*] Explicit window scheduling with [i]season.start[/i] and [i]season.end[/i]
-[*] Fallback duration scheduling with [i]season.length-days[/i]
-[*] Optional recurring explicit windows via [i]season.recurring[/i]
-[*] Reminder broadcasts via [i]season.reminder-minutes[/i] and [i]season.reminder-message[/i]
-[*] Reset broadcast via [i]season.broadcast-message[/i]
-[*] Runtime command support for status + admin controls
-[*] Public integration API ([i]SeasonsApi[/i], [i]SeasonsIntegration[/i])
-[/list]
+[B]Key Features[/B]
+[LIST]
+[*]Automatic season reset scheduling (explicit window or duration-based)
+[*]Explicit window scheduling via [icode]season.start[/icode] / [icode]season.end[/icode]
+[*]Fallback duration scheduling with [icode]season.length-days[/icode]
+[*]Recurring windows with [icode]season.recurring[/icode]
+[*]Reminder broadcasts ([icode]season.reminder-minutes[/icode], [icode]season.reminder-message[/icode])
+[*]Custom reset broadcast ([icode]season.broadcast-message[/icode])
+[*]Admin runtime commands for manual control and status
+[*]Simple developer API for other plugins to register integrations or trigger resets
+[/LIST]
 
-[hr]
+[B]Why use EzSeasons?[/B]
+[LIST]
+[*]Lightweight and focused: does one job well - scheduled resets
+[*]Config-driven: works with explicit dates or duration-based scheduling
+[*]Integrates: expose `SeasonsApi` so other plugins can react to resets
+[*]Production-ready: used on servers that require predictable, announced wipes
+[/LIST]
 
-[b]Commands[/b]
-[list]
-[*][i]/season[/i]
-[*][i]/season admin <reload|reset [reason]|setnext <unixMillis>|clear-next|status>[/i]
-[/list]
-
-[b]Permissions[/b]
-[list]
-[*][i]lifesteal.season[/i] (default: true) - Allows [i]/season[/i]
-[*][i]lifesteal.admin[/i] (default: op) - Allows all [i]/season admin ...[/i] commands and also [i]/season[/i]
-[/list]
-
-[hr]
-
-[b]Configuration Keys (Implemented)[/b]
+[B]Quick Install (Spigot / Paper)[/B]
+[LIST]
+[*]Place the plugin jar into your [icode]/plugins[/icode] folder.
+[*]Start or restart the server.
+[*]Edit [icode]config.yml[/icode] to set your scheduling and messages.
+[*]Use [icode]/season admin status[/icode] to verify next reset time.
+[/LIST]
+[B]Example config snippet[/B]
 [code]
-messages.language
-messages.prefix
-season.enabled
-season.start
-season.end
-season.recurring
-season.length-days
-season.check-interval-minutes
-season.broadcast-message
-season.reminder-minutes
-season.reminder-message
-season.last-reset
-season.next-reset
+season:
+    enabled: true
+    # explicit start/end window (ISO-8601 timestamps in millis)
+    start: 0
+    end: 0
+    recurring: false
+    # fallback duration (days) used when no explicit window is set
+    length-days: 30
+    check-interval-minutes: 5
+    broadcast-message: "Server reset in {time} - prepare accordingly!"
+    reminder-minutes: [60, 30, 10, 1]
+    reminder-message: "Season resets in {minutes} minute(s)!"
 [/code]
 
-[hr]
+[B]Commands & Examples[/B]
+[LIST]
+[*][icode]/season[/icode] - show status and next scheduled reset
+[*][icode]/season admin reload[/icode] - reload plugin config
+[*][icode]/season admin reset [reason][/icode] - trigger an immediate reset (admins only)
+[*][icode]/season admin setnext <unixMillis>[/icode] - set next reset manually
+[*][icode]/season admin clear-next[/icode] - clear any manually set next-reset
+[/LIST]
 
-[b]Developer API (Implemented)[/b]
-Use Bukkit Services Manager to obtain [i]SeasonsApi[/i].
+[B]Permissions[/B]
+[LIST]
+[*][icode]lifesteal.season[/icode] (default: true) - allows [icode]/season[/icode]
+[*][icode]lifesteal.admin[/icode] (default: op) - full admin access to [icode]/season admin ...[/icode]
+[/LIST]
 
-Available API methods:
-[list]
-[*] registerIntegration(SeasonsIntegration integration)
-[*] unregisterIntegration(SeasonsIntegration integration)
-[*] getIntegrations()
-[*] triggerSeasonReset(String reason)
-[/list]
+[B]Developer API (Implemented)[/B]
+Use the Bukkit Services Manager to obtain the `SeasonsApi` service. Methods (examples):
+[LIST]
+[*][icode]registerIntegration(SeasonsIntegration integration)[/icode]
+[*][icode]unregisterIntegration(SeasonsIntegration integration)[/icode]
+[*][icode]getIntegrations()[/icode]
+[*][icode]triggerSeasonReset(String reason)[/icode]
+[/LIST]
+Published events: [icode]SeasonResetEvent[/icode], [icode]SeasonsIntegrationRegisteredEvent[/icode], [icode]SeasonsIntegrationUnregisteredEvent[/icode]
 
-Published events:
-[list]
-[*] SeasonResetEvent
-[*] SeasonsIntegrationRegisteredEvent
-[*] SeasonsIntegrationUnregisteredEvent
-[/list]
 
-Do not rely on removed/non-existent API examples like season objects, [i]getCurrentSeason[/i], [i]setSeason[/i], or [i]SeasonChangeEvent[/i].
+[B]FAQ (for server owners)[/B]
+[LIST]
+[*]Q: Can I schedule recurring wipes? - A: Yes, use [icode]season.recurring[/icode] with explicit windows.
+[*]Q: How do I test the reset? - A: Use [icode]/season admin reset TestReason[/icode] on a staging server.
+[*]Q: Will player data be backed up? - A: EzSeasons only schedules and announces resets; handle backups with your existing backup tools.
+[/LIST]
+
+[B]Support & Links[/B]
+[LIST]
+[*]Source / docs: [URL]https://github.com/ez-plugins/EzSeasons[/URL]
+[*]Download (Modrinth): [URL]https://modrinth.com/plugin/ezseasons[/URL]
+[*]Report issues: [URL]https://github.com/ez-plugins/EzSeasons/issues[/URL]
+[*]License: MIT
+[/LIST]
+
+[B]Changelog / Release notes[/B]
+[LIST]
+[*]See the project changelog in your repository for recent changes and migration notes.
+[/LIST]
