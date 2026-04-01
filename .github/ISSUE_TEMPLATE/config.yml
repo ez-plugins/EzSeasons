@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Integration/API Questions
+    url: https://github.com/example/ezseasons/discussions
+    about: Use discussions for open-ended design and integration questions.
+  - name: Security Reports
+    url: https://github.com/example/ezseasons/security/advisories/new
+    about: Please report security issues privately.

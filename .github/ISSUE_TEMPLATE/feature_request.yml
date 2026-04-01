@@ -1,0 +1,34 @@
+name: Feature request
+description: Propose a new capability for EzSeasons
+labels: [enhancement, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe your use-case first, then the implementation you expect.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      placeholder: "What limitation are you hitting?"
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      placeholder: "Describe API/config changes you propose."
+    validations:
+      required: true
+  - type: textarea
+    id: api_impact
+    attributes:
+      label: Integration API impact (if any)
+      description: Include how this affects `SeasonsApi` consumers.
+      render: java
+      value: |
+        RegisteredServiceProvider<SeasonsApi> rsp = Bukkit.getServicesManager().getRegistration(SeasonsApi.class);
+        if (rsp != null) {
+            SeasonsApi api = rsp.getProvider();
+            api.registerIntegration(new MyIntegration());
+        }

@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.skyblockexp.lifesteal</groupId>
+    <artifactId>ezseasons-parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>EzSeasons</name>
+    <description>Standalone season scheduling plugin with optional integrations</description>
+    <url>https://github.com/ez-plugins/EzSeasons</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/ez-plugins/EzSeasons/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+            <comments>Licensed by Gyvex.</comments>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>EzPlugins</name>
+        <url>https://github.com/ez-plugins</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>shadow48402</id>
+            <name>Shadow48402</name>
+            <url>https://modrinth.com/user/Shadow48402</url>
+            <organization>EzPlugins</organization>
+            <organizationUrl>https://github.com/ez-plugins</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>maintainer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/ez-plugins/EzSeasons.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/ez-plugins/EzSeasons.git</developerConnection>
+        <url>https://github.com/ez-plugins/EzSeasons</url>
+    </scm>
+
+    <modules>
+        <module>api</module>
+        <module>plugin</module>
+    </modules>
+
+    <properties>
+        <java.version>21</java.version>
+        <paper.version>1.21.1-R0.1-SNAPSHOT</paper.version>
+        <jar.version>${project.version}</jar.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/ez-plugins/EzSeasons</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.5.2</version>
+                    <configuration>
+                        <useModulePath>false</useModulePath>
+                        <failIfNoSpecifiedTests>false</failIfNoSpecifiedTests>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

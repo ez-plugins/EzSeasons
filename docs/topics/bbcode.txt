@@ -1,0 +1,71 @@
+[size=6][b]EzSeasons[/b][/size]
+[size=4]Standalone season reset scheduler for Minecraft servers[/size]
+
+[hr]
+
+[b]Implemented Features[/b]
+[list]
+[*] Automatic season reset scheduling
+[*] Explicit window scheduling with [i]season.start[/i] and [i]season.end[/i]
+[*] Fallback duration scheduling with [i]season.length-days[/i]
+[*] Optional recurring explicit windows via [i]season.recurring[/i]
+[*] Reminder broadcasts via [i]season.reminder-minutes[/i] and [i]season.reminder-message[/i]
+[*] Reset broadcast via [i]season.broadcast-message[/i]
+[*] Runtime command support for status + admin controls
+[*] Public integration API ([i]SeasonsApi[/i], [i]SeasonsIntegration[/i])
+[/list]
+
+[hr]
+
+[b]Commands[/b]
+[list]
+[*][i]/season[/i]
+[*][i]/season admin <reload|reset [reason]|setnext <unixMillis>|clear-next|status>[/i]
+[/list]
+
+[b]Permissions[/b]
+[list]
+[*][i]lifesteal.season[/i] (default: true) - Allows [i]/season[/i]
+[*][i]lifesteal.admin[/i] (default: op) - Allows all [i]/season admin ...[/i] commands and also [i]/season[/i]
+[/list]
+
+[hr]
+
+[b]Configuration Keys (Implemented)[/b]
+[code]
+messages.language
+messages.prefix
+season.enabled
+season.start
+season.end
+season.recurring
+season.length-days
+season.check-interval-minutes
+season.broadcast-message
+season.reminder-minutes
+season.reminder-message
+season.last-reset
+season.next-reset
+[/code]
+
+[hr]
+
+[b]Developer API (Implemented)[/b]
+Use Bukkit Services Manager to obtain [i]SeasonsApi[/i].
+
+Available API methods:
+[list]
+[*] registerIntegration(SeasonsIntegration integration)
+[*] unregisterIntegration(SeasonsIntegration integration)
+[*] getIntegrations()
+[*] triggerSeasonReset(String reason)
+[/list]
+
+Published events:
+[list]
+[*] SeasonResetEvent
+[*] SeasonsIntegrationRegisteredEvent
+[*] SeasonsIntegrationUnregisteredEvent
+[/list]
+
+Do not rely on removed/non-existent API examples like season objects, [i]getCurrentSeason[/i], [i]setSeason[/i], or [i]SeasonChangeEvent[/i].

@@ -1,0 +1,5 @@
+com/skyblockexp/lifesteal/seasons/api/events/SeasonsIntegrationRegisteredEvent.class
+com/skyblockexp/lifesteal/seasons/api/events/SeasonsIntegrationUnregisteredEvent.class
+com/skyblockexp/lifesteal/seasons/api/SeasonsIntegration.class
+com/skyblockexp/lifesteal/seasons/api/SeasonsApi.class
+com/skyblockexp/lifesteal/seasons/api/events/SeasonResetEvent.class

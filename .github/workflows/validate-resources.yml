@@ -1,0 +1,26 @@
+name: Validate YAML resources
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-yaml-resources:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Validate YAML resources
+        # Workflow selectors assume tests follow the *UnitTest naming convention.
+        run: mvn -B -Dtest=ResourceYamlValidationUnitTest test

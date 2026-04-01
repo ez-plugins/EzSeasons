@@ -1,0 +1,14 @@
+# Build outputs
+/target/
+
+# Java artifacts
+*.class
+*.jar
+
+# Maven transient/release files
+release.properties
+dependency-reduced-pom.xml
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next

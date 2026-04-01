@@ -1,0 +1,23 @@
+name: EzSeasons
+version: ${project.version}
+main: com.skyblockexp.lifesteal.seasons.EzSeasonsPlugin
+author: EzTeam
+description: Standalone season scheduling plugin with optional integrations
+api-version: 1.21
+commands:
+  season:
+    description: View season status or run admin season subcommands
+    usage: /season [status|admin <reload|reset [reason] --confirm|setnext <unixMillis>|clear-next --confirm|status>]
+    permission: lifesteal.season
+permissions:
+  lifesteal.season:
+    description: Allows /season status (default player access)
+    default: true
+
+  lifesteal.season.admin:
+    description: Primary admin permission for /season admin <reload|reset|setnext|clear-next|status>
+    default: op
+
+  lifesteal.admin:
+    description: Legacy admin fallback accepted for /season and /season admin commands
+    default: op

@@ -1,0 +1,60 @@
+name: Bug report
+description: Report a defect in EzSeasons behavior
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please fill out all sections to help us reproduce quickly.
+  - type: input
+    id: server
+    attributes:
+      label: Server distribution and version
+      placeholder: "Paper 1.21.x"
+    validations:
+      required: true
+  - type: input
+    id: ezseasons_version
+    attributes:
+      label: EzSeasons version
+      placeholder: "e.g. 1.0.0"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Provide exact steps and commands used.
+      placeholder: |
+        1) Set `season.enabled: true`
+        2) Restart server
+        3) Run /season
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: config_excerpt
+    attributes:
+      label: config.yml excerpt
+      description: Include the relevant sections only.
+      render: yaml
+      value: |
+        season:
+          enabled: true
+          start: 0
+          end: 0
+          recurring: false
+          length-days: 30
+          check-interval-minutes: 60
+          reminder-minutes: [60, 10, 1]

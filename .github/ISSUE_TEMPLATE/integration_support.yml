@@ -1,0 +1,43 @@
+name: Integration support
+description: Ask for help integrating another plugin using SeasonsApi
+labels: [integration, needs-triage]
+body:
+  - type: input
+    id: plugin_name
+    attributes:
+      label: External plugin name
+      placeholder: "MyPlugin"
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Integration goal
+      description: What should happen during register/unregister?
+    validations:
+      required: true
+  - type: textarea
+    id: registration_snippet
+    attributes:
+      label: Current registration code
+      render: java
+      value: |
+        RegisteredServiceProvider<SeasonsApi> rsp = Bukkit.getServicesManager().getRegistration(SeasonsApi.class);
+        if (rsp == null) {
+            return;
+        }
+
+        SeasonsApi api = rsp.getProvider();
+        api.registerIntegration(new MyIntegration());
+    validations:
+      required: true
+  - type: textarea
+    id: config_example
+    attributes:
+      label: Relevant config example
+      render: yaml
+      value: |
+        season:
+          enabled: true
+          length-days: 14
+          reminder-minutes: [120, 30, 5]
