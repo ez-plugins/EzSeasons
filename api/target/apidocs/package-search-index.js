@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.skyblockexp.lifesteal.seasons.api"},{"l":"com.skyblockexp.lifesteal.seasons.api.events"}];updateSearchResults();
