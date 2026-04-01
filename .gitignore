@@ -1,14 +1,53 @@
-# Build outputs
-/target/
+# Maven / build outputs
+target/
+
+# Module build directories (explicit)
+api/target/
+plugin/target/
 
 # Java artifacts
 *.class
 *.jar
 
-# Maven transient/release files
+# Maven transient / release files
 release.properties
 dependency-reduced-pom.xml
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
+
+# Maven internal folders
+maven-archiver/
+maven-status/
+
+# Generated and compiled outputs
+generated-sources/
+generated-test-sources/
+classes/
+test-classes/
+
+# Test reports, coverage, and exec files
+**/target/surefire-reports/
+**/surefire-reports/
+jacoco.exec
+*.exec
+coverage/
+site/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
