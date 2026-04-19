@@ -1,13 +1,13 @@
 package com.skyblockexp.lifesteal.seasons.config;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class MessageService {
     private final String prefix;
+
     private final Map<String, String> messages = new HashMap<>();
 
     public MessageService(String prefix) {
@@ -23,7 +23,7 @@ public class MessageService {
     }
 
     public void sendMessage(CommandSender sender, String key, Map<String, String> placeholders) {
-        String message = render(key, placeholders);
+        final String message = render(key, placeholders);
         if (message.isEmpty()) {
             return;
         }
@@ -35,7 +35,7 @@ public class MessageService {
     }
 
     public String format(String key, Map<String, String> placeholders) {
-        String message = render(key, placeholders);
+        final String message = render(key, placeholders);
         return prefix + message;
     }
 

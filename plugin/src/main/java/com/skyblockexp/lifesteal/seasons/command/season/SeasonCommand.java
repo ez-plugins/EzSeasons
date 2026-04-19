@@ -5,16 +5,16 @@ import com.skyblockexp.lifesteal.seasons.command.framework.Command;
 import com.skyblockexp.lifesteal.seasons.command.season.subcommand.AdminSubcommand;
 import com.skyblockexp.lifesteal.seasons.command.season.subcommand.ReloadSubcommand;
 import com.skyblockexp.lifesteal.seasons.command.season.subcommand.StatusSubcommand;
+import java.util.List;
+import java.util.Map;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
-import java.util.List;
-import java.util.Map;
-
 public final class SeasonCommand extends Command implements CommandExecutor, TabCompleter {
 
     private final SeasonCommandContext context;
+
     private final StatusSubcommand statusSubcommand;
 
     public SeasonCommand(EzSeasonsPlugin plugin) {

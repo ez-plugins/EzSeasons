@@ -2,10 +2,9 @@ package com.skyblockexp.lifesteal.seasons.api.events;
 
 import com.skyblockexp.lifesteal.seasons.api.SeasonsApi;
 import com.skyblockexp.lifesteal.seasons.api.SeasonsIntegration;
+import java.util.Objects;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-
-import java.util.Objects;
 
 /**
  * Fired when a {@link SeasonsIntegration} is registered through {@link SeasonsApi}.
@@ -20,6 +19,7 @@ public final class SeasonsIntegrationRegisteredEvent extends Event {
     private static final HandlerList HANDLERS = new HandlerList();
 
     private final SeasonsApi api;
+
     private final SeasonsIntegration integration;
 
     /**

@@ -8,7 +8,7 @@ Thanks for your interest in contributing to EzSeasons.
 
 - Java toolchain version defined by the parent build (`java.version` in the parent POM).
 - Maven 3.9+.
-- A Paper-compatible test server (API target `1.21`) for runtime checks.
+- A Paper-compatible test server (Paper 26.1+, Java 25) for runtime checks.
 
 ### Build locally
 
@@ -35,7 +35,6 @@ If this module is built inside the multi-module parent project, run Maven from t
 - For user-facing text, update defaults in `src/main/resources/config.yml`.
 - Preserve backwards-compatible behavior for public API interfaces in `com.skyblockexp.lifesteal.seasons.api` when possible.
 - Add or update documentation (README, templates, config notes) whenever behavior or integration patterns change.
-
 
 ## Maintainer operations
 

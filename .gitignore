@@ -51,3 +51,11 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Jekyll build output
+docs/_site/
+docs/.bundle/
+docs/vendor/
+
+# Node.js (used for tooling like markdownlint-cli)
+node_modules/

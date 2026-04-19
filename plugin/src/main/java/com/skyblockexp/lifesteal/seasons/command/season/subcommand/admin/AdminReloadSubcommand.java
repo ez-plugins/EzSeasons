@@ -2,9 +2,8 @@ package com.skyblockexp.lifesteal.seasons.command.season.subcommand.admin;
 
 import com.skyblockexp.lifesteal.seasons.command.framework.Subcommand;
 import com.skyblockexp.lifesteal.seasons.command.season.SeasonCommandContext;
-import org.bukkit.command.CommandSender;
-
 import java.util.List;
+import org.bukkit.command.CommandSender;
 
 public final class AdminReloadSubcommand extends Subcommand {
 

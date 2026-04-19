@@ -1,7 +1,7 @@
 package com.skyblockexp.lifesteal.seasons;
 
-import be.seeseemelk.mockbukkit.MockBukkit;
-import be.seeseemelk.mockbukkit.ServerMock;
+import org.mockbukkit.mockbukkit.MockBukkit;
+import org.mockbukkit.mockbukkit.ServerMock;
 import com.skyblockexp.lifesteal.seasons.api.SeasonsApi;
 import com.skyblockexp.lifesteal.seasons.api.SeasonsIntegration;
 import com.skyblockexp.lifesteal.seasons.api.events.SeasonResetEvent;

@@ -2,12 +2,11 @@ package com.skyblockexp.lifesteal.seasons.command;
 
 import com.skyblockexp.lifesteal.seasons.EzSeasonsPlugin;
 import com.skyblockexp.lifesteal.seasons.command.season.SeasonCommand;
+import java.util.Objects;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginIdentifiableCommand;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Objects;
 
 /**
  * Paper command adapter that delegates execution to the structured {@link SeasonCommand} handler.
@@ -15,6 +14,7 @@ import java.util.Objects;
 public final class SeasonPaperCommand extends Command implements PluginIdentifiableCommand {
 
     private final Plugin plugin;
+
     private final SeasonCommand executor;
 
     public SeasonPaperCommand(EzSeasonsPlugin plugin, SeasonCommand executor) {

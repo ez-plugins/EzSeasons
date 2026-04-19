@@ -6,8 +6,11 @@ import org.bukkit.scheduler.BukkitTask;
 public class Registry {
 
     private SeasonsApiImpl seasonsApi;
+
     private SeasonManager seasonManager;
+
     private MessageService messageService;
+
     private BukkitTask seasonCheckTask;
 
     public SeasonsApiImpl getSeasonsApi() {

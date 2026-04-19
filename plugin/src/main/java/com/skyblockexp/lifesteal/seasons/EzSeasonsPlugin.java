@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class EzSeasonsPlugin extends JavaPlugin {
 
     private final Registry registry = new Registry();
+
     private final Bootstrap bootstrap = new Bootstrap(this, registry);
 
     @Override
@@ -30,6 +31,8 @@ public class EzSeasonsPlugin extends JavaPlugin {
     /**
      * Called by external integrations (for example EzLifesteal) to provide the
      * active {@link SeasonManager} implementation used by EzSeasons.
+     *
+     * @param manager the season manager to register; must not be {@code null}
      */
     public void registerSeasonManager(SeasonManager manager) {
         registry.setSeasonManager(manager);

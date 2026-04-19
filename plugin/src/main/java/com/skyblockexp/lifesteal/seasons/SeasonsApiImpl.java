@@ -4,15 +4,15 @@ import com.skyblockexp.lifesteal.seasons.api.SeasonsApi;
 import com.skyblockexp.lifesteal.seasons.api.SeasonsIntegration;
 import com.skyblockexp.lifesteal.seasons.api.events.SeasonsIntegrationRegisteredEvent;
 import com.skyblockexp.lifesteal.seasons.api.events.SeasonsIntegrationUnregisteredEvent;
-import org.bukkit.Bukkit;
-
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bukkit.Bukkit;
 
 final class SeasonsApiImpl implements SeasonsApi {
 
     private final EzSeasonsPlugin plugin;
+
     private final java.util.List<SeasonsIntegration> integrations = new java.util.ArrayList<>();
 
     SeasonsApiImpl(EzSeasonsPlugin plugin) {
@@ -28,7 +28,8 @@ final class SeasonsApiImpl implements SeasonsApi {
         integrations.add(integration);
         try {
             integration.onRegister(this);
-        } catch (Throwable throwable) {
+        }
+        catch (Throwable throwable) {
             integrations.remove(integration);
             logLifecycleFailure("register", integration, throwable);
             throw propagate(throwable);
@@ -42,7 +43,8 @@ final class SeasonsApiImpl implements SeasonsApi {
         if (integrations.remove(integration)) {
             try {
                 integration.onUnregister();
-            } catch (Throwable throwable) {
+            }
+            catch (Throwable throwable) {
                 integrations.add(integration);
                 logLifecycleFailure("unregister", integration, throwable);
                 throw propagate(throwable);
