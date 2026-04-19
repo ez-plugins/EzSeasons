@@ -11,7 +11,7 @@ It runs timed season resets, sends reminder broadcasts, and provides `/season` s
 - Optional companion plugin: [EzLifesteal](https://modrinth.com/plugin/ezlifesteal)
 - Supported server software: Paper / Bukkit-compatible server
 - Requires: Java 25, Minecraft 26.1+
-- Plugin version: 2.0.0
+- Plugin version: 2.0.1
 
 ## Quick setup (server owners)
 
@@ -112,7 +112,7 @@ You can consume the API artifact in two ways:
   <dependency>
     <groupId>com.skyblockexp.lifesteal</groupId>
     <artifactId>ezseasons-api</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.1</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>
@@ -132,7 +132,7 @@ You can consume the API artifact in two ways:
   <dependency>
     <groupId>com.github.ez-plugins.EzSeasons</groupId>
     <artifactId>ezseasons-api</artifactId>
-    <version>v1.0.0</version>
+    <version>v2.0.1</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>
