@@ -39,7 +39,7 @@ You can use either GitHub Packages (official) or JitPack.
   <dependency>
     <groupId>com.skyblockexp.lifesteal</groupId>
     <artifactId>ezseasons-api</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>
@@ -61,7 +61,7 @@ You can use either GitHub Packages (official) or JitPack.
   <dependency>
     <groupId>com.github.ez-plugins.EzSeasons</groupId>
     <artifactId>ezseasons-api</artifactId>
-    <version>v2.1.0</version>
+    <version>v2.1.1</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>
