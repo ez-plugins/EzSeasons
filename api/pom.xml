@@ -16,10 +16,13 @@
     <description>Public API for EzSeasons integrations</description>
 
     <dependencies>
+        <!-- Only org.bukkit.event.Event and HandlerList are used.
+             Pin to a stable Bukkit/Paper version so the API artifact
+             does not need to be updated alongside the server version. -->
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>${paper.version}</version>
+            <version>1.21.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
