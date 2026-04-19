@@ -21,6 +21,11 @@ jobs:
           java-version: '25'
           cache: maven
 
+      - name: Build and install MockBukkit dev/26.1.1
+        run: |
+          git clone --depth=1 --branch dev/26.1.1 https://github.com/MockBukkit/MockBukkit.git /tmp/MockBukkit
+          cd /tmp/MockBukkit && ./gradlew publishToMavenLocal -xtest -xjavadoc
+
       - name: Validate YAML resources
         # Workflow selectors assume tests follow the *UnitTest naming convention.
         run: mvn -B -Dtest=ResourceYamlValidationUnitTest test
