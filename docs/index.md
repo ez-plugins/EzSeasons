@@ -24,7 +24,7 @@ It schedules timed season resets, broadcasts announcements, sends configurable c
 | `/season` command | Players can check the time remaining until the next reset |
 | Admin subcommands | `reload`, `reset`, `setnext`, `clear-next`, `status` |
 | Multi-language support | `en`, `es`, `fr`, `zh`, `ru`, `nl` |
-| Developer API | Bukkit service + Bukkit events; no runtime class-loading tricks |
+| Developer API | Pure-Java API artifact; `SeasonsIntegration` callbacks (`onRegister`, `onUnregister`, `onSeasonReset`); Bukkit events in plugin JAR |
 
 ---
 
@@ -34,7 +34,7 @@ It schedules timed season resets, broadcasts announcements, sends configurable c
 |---|---|
 | Minecraft / Paper | 26.1 or later |
 | Java | 25 or later |
-| Plugin version | 2.0.3 |
+| Plugin version | 2.1.0 |
 
 ---
 
