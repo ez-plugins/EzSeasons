@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.skyblockexp.lifesteal</groupId>
         <artifactId>ezseasons-parent</artifactId>
-        <version>2.0.3</version>
+        <version>2.1.0</version>
     </parent>
 
     <artifactId>ezseasons-api</artifactId>
@@ -15,17 +15,7 @@
     <name>EzSeasons API</name>
     <description>Public API for EzSeasons integrations</description>
 
-    <dependencies>
-        <!-- Only org.bukkit.event.Event and HandlerList are used.
-             Pin to a stable Bukkit/Paper version so the API artifact
-             does not need to be updated alongside the server version. -->
-        <dependency>
-            <groupId>io.papermc.paper</groupId>
-            <artifactId>paper-api</artifactId>
-            <version>1.21.4-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+    <dependencies/>
 
     <build>
         <plugins>
