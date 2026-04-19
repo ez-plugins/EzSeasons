@@ -1,9 +1,9 @@
 name: EzSeasons
 version: ${project.version}
 main: com.skyblockexp.lifesteal.seasons.EzSeasonsPlugin
-author: EzTeam
+author: Shadow48402
 description: Standalone season scheduling plugin with optional integrations
-api-version: 1.21
+api-version: 26.1
 commands:
   season:
     description: View season status or run admin season subcommands

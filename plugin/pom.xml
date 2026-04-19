@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.skyblockexp.lifesteal</groupId>
         <artifactId>ezseasons-parent</artifactId>
-        <version>1.0.0</version>
+        <version>2.0.0</version>
     </parent>
 
     <artifactId>ezseasons-plugin</artifactId>
@@ -15,55 +15,77 @@
     <name>EzSeasons Plugin</name>
     <description>Standalone season scheduling plugin with optional integrations</description>
 
+    <properties>
+        <mockbukkit.version>dev-d245e0a</mockbukkit.version>
+        <junit.version>6.0.3</junit.version>
+        <mockito.version>5.23.0</mockito.version>
+        <jacoco.version>0.8.13</jacoco.version>
+    </properties>
+
     <dependencies>
-        <dependency>
-            <groupId>com.skyblockexp.lifesteal</groupId>
-            <artifactId>ezseasons-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+        <!-- Paper API — provided at runtime by the server -->
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
             <version>${paper.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- EzSeasons public API — shaded into the final plugin JAR -->
         <dependency>
-            <groupId>com.github.seeseemelk</groupId>
-            <artifactId>MockBukkit-v1.21</artifactId>
-            <version>3.133.2</version>
+            <groupId>com.skyblockexp.lifesteal</groupId>
+            <artifactId>ezseasons-api</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Test: MockBukkit for Paper 26.1 -->
+        <dependency>
+            <groupId>org.mockbukkit.mockbukkit</groupId>
+            <artifactId>mockbukkit-v26.1</artifactId>
+            <version>${mockbukkit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Test: JUnit Jupiter -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.12.2</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Test: Mockito -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.18.0</version>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>ezseasons-v${jar.version}</finalName>
+        <finalName>ezseasons-v${project.version}</finalName>
+
+        <!-- Enable Maven variable interpolation in plugin.yml -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
+
+            <!-- Shade the API module into the distributable plugin JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.3</version>
+                <version>3.6.2</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -81,26 +103,17 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
+
+            <!-- JaCoCo code coverage (used by the unit-test-coverage CI job) -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.12</version>
+                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>

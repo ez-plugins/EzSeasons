@@ -8,7 +8,7 @@ Thanks for your interest in contributing to EzSeasons.
 
 - Java toolchain version defined by the parent build (`java.version` in the parent POM).
 - Maven 3.9+.
-- A Paper-compatible test server (API target `1.21`) for runtime checks.
+- A Paper-compatible test server (Paper 26.1+, Java 25) for runtime checks.
 
 ### Build locally
 

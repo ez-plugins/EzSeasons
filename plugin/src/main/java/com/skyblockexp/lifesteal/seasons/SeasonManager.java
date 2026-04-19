@@ -2,31 +2,43 @@ package com.skyblockexp.lifesteal.seasons;
 
 import com.skyblockexp.lifesteal.seasons.api.events.SeasonResetEvent;
 import com.skyblockexp.lifesteal.seasons.config.MessageService;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.configuration.ConfigurationSection;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.configuration.ConfigurationSection;
 
 public class SeasonManager {
 
     private final EzSeasonsPlugin plugin;
+
     private final MessageService messageService;
+
     private final boolean enabled;
+
     private final Duration seasonLength;
+
     private final Duration checkInterval;
+
     private final boolean explicitSeason;
+
     private final boolean recurring;
+
     private long seasonStartMillis;
+
     private long seasonEndMillis;
+
     private final String broadcastMessage;
+
     private final String reminderMessage;
+
     private final List<Duration> reminderOffsets;
+
     private long lastResetMillis;
+
     private long nextResetMillis;
 
     private final ConfigurationSection configSection;
@@ -38,7 +50,7 @@ public class SeasonManager {
         this.messageService = messageService;
         this.configSection = section;
 
-        SeasonSettings settings = SeasonSettings.from(section).validate(plugin);
+        final SeasonSettings settings = SeasonSettings.from(section).validate(plugin);
 
         this.enabled = settings.enabled;
         this.explicitSeason = settings.explicit;
@@ -63,8 +75,8 @@ public class SeasonManager {
     }
 
     public synchronized void triggerSeasonReset(String reason) {
-        long previousReset = lastResetMillis;
-        long resetAt = System.currentTimeMillis();
+        final long previousReset = lastResetMillis;
+        final long resetAt = System.currentTimeMillis();
         lastResetMillis = resetAt;
         nextResetMillis = seasonLength.toMillis() > 0 ? resetAt + seasonLength.toMillis() : 0L;
         persistResetTimestamps();
@@ -105,8 +117,8 @@ public class SeasonManager {
             return false;
         }
 
-        long scheduledNextReset;
-        long recordedLastReset;
+        final long scheduledNextReset;
+        final long recordedLastReset;
         synchronized (this) {
             scheduledNextReset = nextResetMillis;
             recordedLastReset = lastResetMillis;
@@ -125,24 +137,24 @@ public class SeasonManager {
     }
 
     public Optional<Duration> getTimeUntilReset() {
-        long scheduledNextReset;
-        long recordedLastReset;
+        final long scheduledNextReset;
+        final long recordedLastReset;
         synchronized (this) {
             scheduledNextReset = nextResetMillis;
             recordedLastReset = lastResetMillis;
         }
 
         if (scheduledNextReset > 0) {
-            long now = System.currentTimeMillis();
-            long diff = scheduledNextReset - now;
+            final long now = System.currentTimeMillis();
+            final long diff = scheduledNextReset - now;
             if (diff > 0) {
                 return Optional.of(Duration.ofMillis(diff));
             }
         }
         if (seasonLength.toMillis() > 0 && recordedLastReset > 0) {
-            long next = recordedLastReset + seasonLength.toMillis();
-            long now = System.currentTimeMillis();
-            long diff = next - now;
+            final long next = recordedLastReset + seasonLength.toMillis();
+            final long now = System.currentTimeMillis();
+            final long diff = next - now;
             if (diff > 0) {
                 return Optional.of(Duration.ofMillis(diff));
             }
@@ -151,9 +163,9 @@ public class SeasonManager {
     }
 
     public String formatDuration(Duration duration) {
-        long seconds = duration.getSeconds();
-        long absSeconds = Math.abs(seconds);
-        String positive = String.format("%d:%02d:%02d", absSeconds / 3600, (absSeconds % 3600) / 60, absSeconds % 60);
+        final long seconds = duration.getSeconds();
+        final long absSeconds = Math.abs(seconds);
+        final String positive = String.format("%d:%02d:%02d", absSeconds / 3600, (absSeconds % 3600) / 60, absSeconds % 60);
         return seconds < 0 ? "-" + positive : positive;
     }
 
@@ -170,19 +182,31 @@ public class SeasonManager {
     private static final class SeasonSettings {
 
         private static final String DEFAULT_BROADCAST = "&7A new season has begun! Hearts have been reset.";
+
         private static final String DEFAULT_REMINDER = "&7The season will reset in &c%time%&7.";
 
         private final boolean enabled;
+
         private final long start;
+
         private final long end;
+
         private final Duration length;
+
         private final Duration checkInterval;
+
         private final String broadcastMessage;
+
         private final String reminderMessage;
+
         private final List<Duration> reminderOffsets;
+
         private final long lastReset;
+
         private final long nextReset;
+
         private final boolean recurring;
+
         private final boolean explicit;
 
         private SeasonSettings(boolean enabled,
@@ -212,7 +236,8 @@ public class SeasonManager {
         }
 
         private SeasonSettings withRecurring(boolean recurring) {
-            return new SeasonSettings(enabled, start, end, length, checkInterval, broadcastMessage, reminderMessage, reminderOffsets, lastReset, nextReset, recurring, explicit);
+            return new SeasonSettings(enabled, start, end, length, checkInterval,
+                    broadcastMessage, reminderMessage, reminderOffsets, lastReset, nextReset, recurring, explicit);
         }
 
         private static SeasonSettings from(ConfigurationSection section) {
@@ -233,18 +258,18 @@ public class SeasonManager {
                 );
             }
 
-            boolean enabled = section.getBoolean("enabled", false);
-            long start = section.getLong("start", 0L);
-            long end = section.getLong("end", 0L);
-            Duration length = safeDurationDays(section.getLong("length-days", 30L));
-            Duration checkInterval = safeDurationMinutes(section.getLong("check-interval-minutes", 60L));
-            String message = section.getString("broadcast-message", DEFAULT_BROADCAST);
-            String reminder = section.getString("reminder-message", DEFAULT_REMINDER);
-            long lastReset = section.getLong("last-reset", 0L);
-            long nextReset = section.getLong("next-reset", 0L);
-            boolean recurring = section.getBoolean("recurring", false);
-            List<Duration> reminders = parseAndSortReminderOffsets(section.getIntegerList("reminder-minutes"));
-            boolean explicit = start > 0L && end > start;
+            final boolean enabled = section.getBoolean("enabled", false);
+            final long start = section.getLong("start", 0L);
+            final long end = section.getLong("end", 0L);
+            final Duration length = safeDurationDays(section.getLong("length-days", 30L));
+            final Duration checkInterval = safeDurationMinutes(section.getLong("check-interval-minutes", 60L));
+            final String message = section.getString("broadcast-message", DEFAULT_BROADCAST);
+            final String reminder = section.getString("reminder-message", DEFAULT_REMINDER);
+            final long lastReset = section.getLong("last-reset", 0L);
+            final long nextReset = section.getLong("next-reset", 0L);
+            final boolean recurring = section.getBoolean("recurring", false);
+            final List<Duration> reminders = parseAndSortReminderOffsets(section.getIntegerList("reminder-minutes"));
+            final boolean explicit = start > 0L && end > start;
 
             return new SeasonSettings(enabled, start, end, length, checkInterval, message, reminder, reminders, lastReset, nextReset, recurring, explicit);
         }
@@ -252,10 +277,12 @@ public class SeasonManager {
         private SeasonSettings validate(EzSeasonsPlugin plugin) {
             SeasonSettings settings = this;
             if (plugin != null && (start > 0L || end > 0L) && !explicit) {
-                plugin.getLogger().warning("Season end must be after the start time. Falling back to duration based scheduling.");
+                plugin.getLogger().warning(
+                        "Season end must be after the start time. Falling back to duration based scheduling.");
             }
             if (plugin != null && recurring && !explicit) {
-                plugin.getLogger().warning("Season recurrence requires explicit start and end timestamps. Ignoring the recurring setting.");
+                plugin.getLogger().warning(
+                        "Season recurrence requires explicit start and end timestamps. Ignoring the recurring setting.");
                 settings = settings.withRecurring(false);
             }
             return settings;
@@ -270,7 +297,7 @@ public class SeasonManager {
         }
 
         private static List<Duration> parseAndSortReminderOffsets(List<Integer> reminderMinutes) {
-            List<Duration> reminders = new ArrayList<>();
+            final List<Duration> reminders = new ArrayList<>();
             for (Integer minutes : reminderMinutes) {
                 if (minutes != null && minutes > 0) {
                     reminders.add(Duration.ofMinutes(minutes));

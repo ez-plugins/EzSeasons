@@ -1,5 +1,5 @@
 jdk:
-  - openjdk21
+  - openjdk25
 
 install:
   - mvn --batch-mode --no-transfer-progress clean install -DskipTests

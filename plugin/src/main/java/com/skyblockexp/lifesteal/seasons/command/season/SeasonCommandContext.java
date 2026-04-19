@@ -2,8 +2,6 @@ package com.skyblockexp.lifesteal.seasons.command.season;
 
 import com.skyblockexp.lifesteal.seasons.EzSeasonsPlugin;
 import com.skyblockexp.lifesteal.seasons.SeasonManager;
-import org.bukkit.command.CommandSender;
-
 import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneOffset;
@@ -11,13 +9,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
+import org.bukkit.command.CommandSender;
 
 public final class SeasonCommandContext {
 
     static final String SEASON_ADMIN_NODE = "lifesteal.season.admin";
+
     static final String LEGACY_ADMIN_NODE = "lifesteal.admin";
 
-    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(ZoneOffset.UTC);
+    private static final DateTimeFormatter TIME_FORMATTER =
+            DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(ZoneOffset.UTC);
+
     private static final long MAX_TIMESTAMP_MILLIS = 32_503_680_000_000L;
 
     private final EzSeasonsPlugin plugin;
@@ -35,7 +37,7 @@ public final class SeasonCommandContext {
     }
 
     public SeasonManager requireEnabledSeasonManager(CommandSender sender) {
-        SeasonManager seasonManager = plugin.getSeasonManager();
+        final SeasonManager seasonManager = plugin.getSeasonManager();
         if (seasonManager == null || !seasonManager.isEnabled()) {
             plugin.getMessageService().sendMessage(sender, "season-disabled");
             return null;
@@ -44,16 +46,16 @@ public final class SeasonCommandContext {
     }
 
     public boolean sendSeasonStatus(CommandSender sender) {
-        SeasonManager seasonManager = requireEnabledSeasonManager(sender);
+        final SeasonManager seasonManager = requireEnabledSeasonManager(sender);
         if (seasonManager == null) {
             return true;
         }
-        Optional<Duration> timeUntilReset = seasonManager.getTimeUntilReset();
+        final Optional<Duration> timeUntilReset = seasonManager.getTimeUntilReset();
         if (timeUntilReset.isEmpty()) {
             plugin.getMessageService().sendMessage(sender, "season-status-unknown");
             return true;
         }
-        String formatted = seasonManager.formatDuration(timeUntilReset.get());
+        final String formatted = seasonManager.formatDuration(timeUntilReset.get());
         plugin.getMessageService().sendMessage(sender, "season-status", Map.of("time", formatted));
         return true;
     }
@@ -62,7 +64,8 @@ public final class SeasonCommandContext {
         final long millis;
         try {
             millis = Long.parseLong(value);
-        } catch (NumberFormatException ex) {
+        }
+        catch (NumberFormatException ex) {
             plugin.getMessageService().sendMessage(sender, "admin-setnext-invalid-timestamp",
                     Map.of("value", value, "expected", "unix epoch milliseconds (example: 1735689600000)"));
             return null;
@@ -89,7 +92,7 @@ public final class SeasonCommandContext {
         if (args.length == 0) {
             return "admin";
         }
-        String reason = Arrays.stream(args)
+        final String reason = Arrays.stream(args)
                 .filter(token -> !"--confirm".equalsIgnoreCase(token))
                 .reduce((left, right) -> left + " " + right)
                 .orElse("")

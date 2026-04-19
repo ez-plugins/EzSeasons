@@ -1,26 +1,48 @@
+---
+title: Permissions
+nav_order: 5
+description: "Permission node reference for EzSeasons"
+---
+
 # Permissions
+{: .no_toc }
 
-EzSeasons defines three permission nodes.
+## Table of contents
+{: .no_toc .text-delta }
 
-## `lifesteal.season`
+1. TOC
+{:toc}
 
-- **Default:** `true`
-- **Purpose:** allows `/season` status usage (`/season` and `/season status`).
+---
 
-## `lifesteal.season.admin`
+## Permission nodes
 
-- **Default:** `op`
-- **Purpose:** primary admin permission for `/season admin <reload|reset [reason]|setnext <unixMillis>|clear-next|status>`.
-- **Also accepted for:** `/season` status command.
+| Node | Default | Grants access to |
+|---|---|---|
+| `lifesteal.season` | **All players** (`true`) | `/season` — view the time until the next reset |
+| `lifesteal.season.admin` | **Operators** (`op`) | `/season admin <reload\|reset\|setnext\|clear-next\|status>` |
+| `lifesteal.admin` | **Operators** (`op`) | Legacy fallback — accepted for both `/season` and `/season admin` commands |
 
-## `lifesteal.admin`
+---
 
-- **Default:** `op`
-- **Purpose:** legacy admin fallback for `/season admin <reload|reset [reason]|setnext <unixMillis>|clear-next|status>`.
-- **Also accepted for:** `/season` status command.
+## Notes
 
-## Recommended setup
+- `lifesteal.admin` is a **legacy fallback**. It was carried over from EzLifesteal for backward compatibility. Prefer granting `lifesteal.season` and `lifesteal.season.admin` explicitly on standalone EzSeasons servers.
+- Setting a permission node `default` to `op` in `plugin.yml` means only operators receive it by default. You can override this with any permissions plugin (e.g. LuckPerms).
+- There is no separate per-subcommand permission. A player with `lifesteal.season.admin` (or `lifesteal.admin`) can run all admin subcommands.
 
-- Keep `lifesteal.season` at default `true` for all players.
-- Grant `lifesteal.season.admin` to trusted staff.
-- Keep `lifesteal.admin` only for backward compatibility with existing permission setups.
+---
+
+## LuckPerms examples
+
+Grant a `moderator` group access to admin commands:
+
+```
+/lp group moderator permission set lifesteal.season.admin true
+```
+
+Revoke player access to `/season` for a `restricted` group:
+
+```
+/lp group restricted permission set lifesteal.season false
+```
