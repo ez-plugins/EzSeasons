@@ -14,7 +14,7 @@ It runs timed season resets, sends reminder broadcasts, and provides `/season` s
 - Optional companion plugin: [EzLifesteal](https://modrinth.com/plugin/ezlifesteal)
 - Supported server software: Paper / Bukkit-compatible server
 - Requires: Java 25, Minecraft 26.1+
-- Plugin version: 2.0.3
+- Plugin version: 2.1.0
 
 ## Quick setup (server owners)
 
@@ -92,7 +92,9 @@ season:
 
 ## For developers (optional)
 
-EzSeasons exposes a Bukkit service API (`SeasonsApi`) for integrations.
+EzSeasons exposes a Bukkit service API (`SeasonsApi`) for integrations. The API artifact is **pure Java** — it has no Bukkit/Paper dependency, so it stays compatible regardless of server version.
+
+Integrated plugins receive lifecycle callbacks (`onRegister`, `onUnregister`, `onSeasonReset`) via the `SeasonsIntegration` interface, and can also listen to Bukkit events (`SeasonResetEvent`, etc.) which are included in the plugin JAR.
 
 ### Dependency options
 
@@ -115,7 +117,7 @@ You can consume the API artifact in two ways:
   <dependency>
     <groupId>com.skyblockexp.lifesteal</groupId>
     <artifactId>ezseasons-api</artifactId>
-    <version>2.0.3</version>
+    <version>2.1.0</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>
@@ -135,7 +137,7 @@ You can consume the API artifact in two ways:
   <dependency>
     <groupId>com.github.ez-plugins.EzSeasons</groupId>
     <artifactId>ezseasons-api</artifactId>
-    <version>v2.0.3</version>
+    <version>v2.1.0</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>

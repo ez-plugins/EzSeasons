@@ -1,0 +1,22 @@
+coverage:
+  precision: 2
+  round: down
+  range: "60...100"
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 2%
+    patch:
+      default:
+        target: auto
+        threshold: 1%
+
+comment:
+  layout: "condensed_header, condensed_tree, condensed_diff"
+  behavior: default
+  require_changes: yes
+  require_base: yes
+
+ignore:
+  - "src/test/**"
