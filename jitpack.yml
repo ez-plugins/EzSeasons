@@ -4,4 +4,4 @@ jdk:
 install:
   - git clone --depth=1 --branch dev/26.1.1 https://github.com/MockBukkit/MockBukkit.git /tmp/MockBukkit
   - cd /tmp/MockBukkit && ./gradlew publishToMavenLocal -xtest -xjavadoc
-  - ./mvnw --batch-mode --no-transfer-progress clean install -Dmaven.test.skip=true
+  - cd $HOME/build && ./mvnw --batch-mode --no-transfer-progress clean install -Dmaven.test.skip=true
