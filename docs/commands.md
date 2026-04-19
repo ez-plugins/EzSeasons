@@ -30,7 +30,8 @@ Shows the remaining time until the next configured season reset.
 | Available to | Players and console |
 
 **Example output:**
-```
+
+```text
 [EzSeasons] Next season reset in 12d 4h 33m.
 ```
 
@@ -60,7 +61,7 @@ Administrative runtime operations. Requires `lifesteal.season.admin` or `lifeste
 
 Reloads `config.yml` and all message translation files, then rebuilds the active season manager. Use this after editing the config file so you do not need to restart the server.
 
-```
+```shell
 /season admin reload
 ```
 
@@ -70,12 +71,13 @@ Reloads `config.yml` and all message translation files, then rebuilds the active
 
 Shows the same countdown as `/season`, plus the raw stored values for debugging purposes.
 
-```
+```shell
 /season admin status
 ```
 
 **Example output:**
-```
+
+```text
 [EzSeasons] Next season reset in 12d 4h 33m.
 [EzSeasons] Raw values -> last-reset=1735689600000, next-reset=1738368000000
 ```
@@ -88,7 +90,7 @@ Forces an immediate season reset. This triggers the `SeasonResetEvent`, sends th
 
 The `--confirm` flag is required to prevent accidental resets.
 
-```
+```shell
 /season admin reset --confirm
 /season admin reset maintenance --confirm
 /season admin reset manual --confirm
@@ -105,19 +107,20 @@ The `--confirm` flag is required to prevent accidental resets.
 
 Sets the next season reset to a specific point in time. Useful for pushing a reset forward or delaying it without changing the `config.yml` scheduling settings.
 
-```
+```shell
 /season admin setnext 1738368000000
 ```
 
-The argument is a **Unix timestamp in milliseconds** (not seconds). 
+The argument is a **Unix timestamp in milliseconds** (not seconds).
 
 **How to get a Unix timestamp in milliseconds:**
+
 - Visit [epochconverter.com](https://www.epochconverter.com/) and multiply the result by 1000 if the site shows seconds.
 - Or use tab completion — EzSeasons shows `now+3600000` as an example hint (current time + 1 hour in ms).
 
 Returns a confirmation with the human-readable date when successful:
 
-```
+```text
 [EzSeasons] Next reset set to 1738368000 (2025-02-01T00:00:00Z).
 ```
 
@@ -129,7 +132,7 @@ Clears the stored `next-reset` value (sets it to `0`). EzSeasons will then recal
 
 The `--confirm` flag is required.
 
-```
+```shell
 /season admin clear-next --confirm
 ```
 

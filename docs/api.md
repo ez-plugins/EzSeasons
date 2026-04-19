@@ -87,6 +87,7 @@ Public service interface registered as a Bukkit service. Obtain it via `Bukkit.g
 | `triggerSeasonReset(String reason)` | `boolean` | Triggers an immediate reset. Returns `true` if a season manager is active. `reason` may be `null` (stored as `"unspecified"`). |
 
 **Ordering guarantees:**
+
 - `registerIntegration` — registry is updated **before** `onRegister` is called and before `SeasonsIntegrationRegisteredEvent` fires.
 - `unregisterIntegration` — registry is updated **before** `onUnregister` is called and before `SeasonsIntegrationUnregisteredEvent` fires.
 - `triggerSeasonReset` — timestamps are persisted **before** `SeasonResetEvent` fires.

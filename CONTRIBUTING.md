@@ -36,7 +36,6 @@ If this module is built inside the multi-module parent project, run Maven from t
 - Preserve backwards-compatible behavior for public API interfaces in `com.skyblockexp.lifesteal.seasons.api` when possible.
 - Add or update documentation (README, templates, config notes) whenever behavior or integration patterns change.
 
-
 ## Maintainer operations
 
 - Code of Conduct reports are received through the maintainer-controlled alias `ezplugins@outlook.com`.

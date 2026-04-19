@@ -37,12 +37,12 @@ description: "Permission node reference for EzSeasons"
 
 Grant a `moderator` group access to admin commands:
 
-```
+```shell
 /lp group moderator permission set lifesteal.season.admin true
 ```
 
 Revoke player access to `/season` for a `restricted` group:
 
-```
+```shell
 /lp group restricted permission set lifesteal.season false
 ```

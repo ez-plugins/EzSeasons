@@ -19,7 +19,7 @@ Please **do not** report security vulnerabilities in public GitHub issues or dis
 
 Report vulnerabilities privately by email:
 
-- **ezplugins@outlook.com**
+- **[ezplugins@outlook.com](mailto:ezplugins@outlook.com)**
 
 Include the following information to help us triage quickly:
 

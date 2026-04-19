@@ -75,6 +75,7 @@ season:
 ```
 
 To get a Unix millisecond timestamp:
+
 - Visit [epochconverter.com](https://www.epochconverter.com/) and multiply the displayed value by `1000`.
 - Or use `/season admin setnext` at runtime (see [Commands](commands)).
 
