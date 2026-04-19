@@ -84,6 +84,13 @@ jobs:
           name: unit-test-coverage-report
           path: plugin/target/site/jacoco
           if-no-files-found: error
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: plugin/target/site/jacoco/jacoco.xml
+          flags: unittests
+          fail_ci_if_error: true
 
   translation-tests:
     name: Translation coverage
