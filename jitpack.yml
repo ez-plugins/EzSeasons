@@ -2,4 +2,4 @@ jdk:
   - openjdk25
 
 install:
-  - ./mvnw --batch-mode --no-transfer-progress clean install -Dmaven.test.skip=true
+  - ./mvnw --batch-mode --no-transfer-progress clean install -pl api -Dmaven.test.skip=true

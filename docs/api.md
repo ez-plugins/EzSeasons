@@ -39,7 +39,7 @@ You can use either GitHub Packages (official) or JitPack.
   <dependency>
     <groupId>com.skyblockexp.lifesteal</groupId>
     <artifactId>ezseasons-api</artifactId>
-    <version>2.0.3</version>
+    <version>2.1.0</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>
@@ -61,7 +61,7 @@ You can use either GitHub Packages (official) or JitPack.
   <dependency>
     <groupId>com.github.ez-plugins.EzSeasons</groupId>
     <artifactId>ezseasons-api</artifactId>
-    <version>v2.0.3</version>
+    <version>v2.1.0</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>
@@ -69,7 +69,7 @@ You can use either GitHub Packages (official) or JitPack.
 
 ## Threading
 
-All public API methods are safe to call from concurrent threads — the integration registry is internally synchronized. However, **callbacks** (`onRegister`, `onUnregister`) and **Bukkit events** (`SeasonResetEvent`, etc.) are fired on the calling thread. In typical usage this is the Bukkit main thread.
+All public API methods are safe to call from concurrent threads — the integration registry is internally synchronized. However, **callbacks** (`onRegister`, `onUnregister`, `onSeasonReset`) and **Bukkit events** (`SeasonResetEvent`, etc.) are fired on the calling thread. In typical usage this is the Bukkit main thread.
 
 ---
 
@@ -90,7 +90,7 @@ Public service interface registered as a Bukkit service. Obtain it via `Bukkit.g
 
 - `registerIntegration` — registry is updated **before** `onRegister` is called and before `SeasonsIntegrationRegisteredEvent` fires.
 - `unregisterIntegration` — registry is updated **before** `onUnregister` is called and before `SeasonsIntegrationUnregisteredEvent` fires.
-- `triggerSeasonReset` — timestamps are persisted **before** `SeasonResetEvent` fires.
+- `triggerSeasonReset` — timestamps are persisted **before** `SeasonResetEvent` fires and **before** `onSeasonReset` callbacks are invoked.
 
 ### `SeasonsIntegration`
 
@@ -100,12 +100,15 @@ Implement this interface in your plugin to receive registration lifecycle callba
 |---|---|
 | `onRegister(SeasonsApi api)` | Called after this integration is added to the EzSeasons registry. |
 | `onUnregister()` | Called after this integration is removed from the EzSeasons registry. |
+| `onSeasonReset(long previousResetMillis, long resetMillis, long nextResetMillis, String reason)` | Called after each season reset. Default no-op — override to react to resets without a Bukkit `@EventHandler`. |
 
-Exceptions thrown from either callback propagate to the caller; EzSeasons does not swallow them.
+Exceptions thrown from `onRegister` or `onUnregister` propagate to the caller; EzSeasons does not swallow them.
 
 ---
 
 ## Events
+
+> **Note:** Event classes (`SeasonResetEvent`, `SeasonsIntegrationRegisteredEvent`, `SeasonsIntegrationUnregisteredEvent`) are shipped in the **plugin JAR**, not in the API artifact. If your plugin uses `@EventHandler` listeners directly, declare EzSeasons as a `softdepend` and add the plugin JAR as a `provided` compile dependency. For most integrations the `onSeasonReset` callback on `SeasonsIntegration` is sufficient and requires only the API artifact.
 
 ### `SeasonResetEvent`
 
