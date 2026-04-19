@@ -34,7 +34,7 @@ It schedules timed season resets, broadcasts announcements, sends configurable c
 |---|---|
 | Minecraft / Paper | 26.1 or later |
 | Java | 25 or later |
-| Plugin version | 2.0.3 |
+| Plugin version | 2.0.2 |
 
 ---
 
