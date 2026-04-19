@@ -6,7 +6,7 @@ It runs timed season resets, sends reminder broadcasts, and provides `/season` s
 > This README is written for **server owners** first. API details are included near the end for plugin developers.
 
 > EzSeasons >= 2.0.0 is build for Minecraft 26.1 & Java 25
-> EzSeasons >
+> EzSeasons < 2.0.0 is build for Minecraft 1.8-26.1 & Java 17
 
 ## Download
 
@@ -14,7 +14,7 @@ It runs timed season resets, sends reminder broadcasts, and provides `/season` s
 - Optional companion plugin: [EzLifesteal](https://modrinth.com/plugin/ezlifesteal)
 - Supported server software: Paper / Bukkit-compatible server
 - Requires: Java 25, Minecraft 26.1+
-- Plugin version: 2.0.2
+- Plugin version: 2.0.3
 
 ## Quick setup (server owners)
 
@@ -115,7 +115,7 @@ You can consume the API artifact in two ways:
   <dependency>
     <groupId>com.skyblockexp.lifesteal</groupId>
     <artifactId>ezseasons-api</artifactId>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>
@@ -135,7 +135,7 @@ You can consume the API artifact in two ways:
   <dependency>
     <groupId>com.github.ez-plugins.EzSeasons</groupId>
     <artifactId>ezseasons-api</artifactId>
-    <version>v2.0.2</version>
+    <version>v2.0.3</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>

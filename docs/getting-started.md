@@ -29,7 +29,7 @@ EzSeasons does **not** require EzLifesteal. It is fully standalone.
 ## Installation
 
 1. Stop your server.
-2. Download `EzSeasons-2.0.2.jar` from [Modrinth](https://modrinth.com/plugin/ezseasons).
+2. Download `EzSeasons-2.0.3.jar` from [Modrinth](https://modrinth.com/plugin/ezseasons).
 3. Copy the jar into your `plugins/` folder.
 4. *(Optional)* Install [EzLifesteal](https://modrinth.com/plugin/ezlifesteal) if you want Lifesteal heart-reset behavior on each season reset.
 5. Start the server once. EzSeasons generates `plugins/EzSeasons/config.yml` and the `messages/` folder.
