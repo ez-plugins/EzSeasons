@@ -21,5 +21,10 @@ jobs:
           java-version: '25'
           cache: maven
 
-      - name: Build API module (mirrors jitpack.yml install command)
-        run: ./mvnw --batch-mode --no-transfer-progress clean install -pl api -am -Dmaven.test.skip=true
+      - name: Build and install MockBukkit dev/26.1.1 (mirrors jitpack.yml)
+        run: |
+          git clone --depth=1 --branch dev/26.1.1 https://github.com/MockBukkit/MockBukkit.git /tmp/MockBukkit
+          cd /tmp/MockBukkit && ./gradlew publishToMavenLocal -xtest -xjavadoc
+
+      - name: Full build with tests skipped (mirrors jitpack.yml install command)
+        run: ./mvnw --batch-mode --no-transfer-progress clean install -Dmaven.test.skip=true
