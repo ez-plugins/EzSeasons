@@ -3,10 +3,9 @@ package com.skyblockexp.lifesteal.seasons.command.season.subcommand.admin;
 import com.skyblockexp.lifesteal.seasons.SeasonManager;
 import com.skyblockexp.lifesteal.seasons.command.framework.Subcommand;
 import com.skyblockexp.lifesteal.seasons.command.season.SeasonCommandContext;
-import org.bukkit.command.CommandSender;
-
 import java.util.List;
 import java.util.Map;
+import org.bukkit.command.CommandSender;
 
 public final class AdminClearNextSubcommand extends Subcommand {
 
@@ -19,7 +18,7 @@ public final class AdminClearNextSubcommand extends Subcommand {
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        SeasonManager seasonManager = context.getPlugin().getSeasonManager();
+        final SeasonManager seasonManager = context.getPlugin().getSeasonManager();
         if (seasonManager == null || !seasonManager.isEnabled()) {
             context.getPlugin().getMessageService().sendMessage(sender, "season-disabled");
             return true;

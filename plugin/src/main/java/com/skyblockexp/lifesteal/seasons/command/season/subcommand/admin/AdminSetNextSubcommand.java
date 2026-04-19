@@ -3,10 +3,9 @@ package com.skyblockexp.lifesteal.seasons.command.season.subcommand.admin;
 import com.skyblockexp.lifesteal.seasons.SeasonManager;
 import com.skyblockexp.lifesteal.seasons.command.framework.Subcommand;
 import com.skyblockexp.lifesteal.seasons.command.season.SeasonCommandContext;
-import org.bukkit.command.CommandSender;
-
 import java.util.List;
 import java.util.Map;
+import org.bukkit.command.CommandSender;
 
 public final class AdminSetNextSubcommand extends Subcommand {
 
@@ -19,7 +18,7 @@ public final class AdminSetNextSubcommand extends Subcommand {
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        SeasonManager seasonManager = context.requireEnabledSeasonManager(sender);
+        final SeasonManager seasonManager = context.requireEnabledSeasonManager(sender);
         if (seasonManager == null) {
             return true;
         }
@@ -28,7 +27,7 @@ public final class AdminSetNextSubcommand extends Subcommand {
             return true;
         }
 
-        Long millis = context.parseTimestamp(args[0], sender);
+        final Long millis = context.parseTimestamp(args[0], sender);
         if (millis == null) {
             return true;
         }

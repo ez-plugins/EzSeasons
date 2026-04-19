@@ -1,15 +1,15 @@
 package com.skyblockexp.lifesteal.seasons.command.framework;
 
-import org.bukkit.command.CommandSender;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Stream;
+import org.bukkit.command.CommandSender;
 
 public abstract class Subcommand {
 
     private final String name;
+
     private final List<String> aliases;
 
     protected Subcommand(String name, List<String> aliases) {
@@ -32,7 +32,7 @@ public abstract class Subcommand {
         if (aliases.isEmpty()) {
             return List.of(name);
         }
-        List<String> names = new ArrayList<>();
+        final List<String> names = new ArrayList<>();
         names.add(name);
         names.addAll(aliases);
         return names;
@@ -45,9 +45,9 @@ public abstract class Subcommand {
     }
 
     protected List<String> filter(List<String> values, String input) {
-        String lowerInput = input.toLowerCase(Locale.ROOT);
-        List<String> matches = new ArrayList<>();
-        Stream<String> stream = values.stream();
+        final String lowerInput = input.toLowerCase(Locale.ROOT);
+        final List<String> matches = new ArrayList<>();
+        final Stream<String> stream = values.stream();
         stream.filter(value -> value.toLowerCase(Locale.ROOT).startsWith(lowerInput)).forEach(matches::add);
         return matches;
     }

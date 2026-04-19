@@ -1,10 +1,9 @@
 package com.skyblockexp.lifesteal.seasons.integration;
 
-import org.bukkit.entity.Player;
-
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import org.bukkit.entity.Player;
 
 public interface LifestealIntegration {
 

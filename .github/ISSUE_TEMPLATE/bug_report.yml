@@ -10,14 +10,14 @@ body:
     id: server
     attributes:
       label: Server distribution and version
-      placeholder: "Paper 1.21.x"
+      placeholder: "Paper 26.1.x"
     validations:
       required: true
   - type: input
     id: ezseasons_version
     attributes:
       label: EzSeasons version
-      placeholder: "e.g. 1.0.0"
+      placeholder: "e.g. 2.0.0"
     validations:
       required: true
   - type: textarea

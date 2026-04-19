@@ -6,11 +6,12 @@ EzSeasons follows a **latest-stable support policy**:
 
 | Version | Supported |
 | --- | --- |
-| 1.x (latest patch release) | ✅ Yes |
-| 1.x (older patch releases) | ⚠️ Best effort |
+| 2.x (latest patch release) | ✅ Yes |
+| 2.x (older patch releases) | ⚠️ Best effort |
+| 1.x | ❌ No |
 | < 1.0.0 | ❌ No |
 
-Please upgrade to the newest `1.x` release before reporting a vulnerability when possible.
+Please upgrade to the newest `2.x` release before reporting a vulnerability when possible.
 
 ## Reporting a Vulnerability
 
@@ -18,7 +19,7 @@ Please **do not** report security vulnerabilities in public GitHub issues or dis
 
 Report vulnerabilities privately by email:
 
-- **ezplugins@outlook.com**
+- **[ezplugins@outlook.com](mailto:ezplugins@outlook.com)**
 
 Include the following information to help us triage quickly:
 

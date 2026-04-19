@@ -11,7 +11,8 @@ package com.skyblockexp.lifesteal.seasons.api;
 public interface SeasonsApi {
 
     /**
-     * Registers a plugin integration with EzSeasons. The integration can listen for season events or interact with the API.
+     * Registers a plugin integration with EzSeasons. The integration can listen for season events
+     * or interact with the API.
      *
      * Ordering guarantee: internal registration state is updated <strong>before</strong>
      * {@link SeasonsIntegration#onRegister(SeasonsApi)} is invoked and before

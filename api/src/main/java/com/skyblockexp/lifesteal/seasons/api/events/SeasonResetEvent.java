@@ -1,24 +1,27 @@
 package com.skyblockexp.lifesteal.seasons.api.events;
 
+import java.util.Objects;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-
-import java.util.Objects;
 
 /**
  * Fired whenever EzSeasons performs a season reset.
  * <p>
  * Ordering guarantee: this event is dispatched only after internal reset timestamps have been updated and persisted.
  * <p>
- * Threading: fired on the thread that initiated the reset. In typical Bukkit usage this should be the main server thread.
+ * Threading: fired on the thread that initiated the reset. In typical Bukkit usage this should be the main
+ * server thread.
  */
 public final class SeasonResetEvent extends Event {
 
     private static final HandlerList HANDLERS = new HandlerList();
 
     private final long previousResetMillis;
+
     private final long resetMillis;
+
     private final long nextResetMillis;
+
     private final String reason;
 
     /**
@@ -27,7 +30,8 @@ public final class SeasonResetEvent extends Event {
      * @param previousResetMillis reset timestamp immediately before this reset in unix epoch milliseconds
      * @param resetMillis         reset timestamp for this reset in unix epoch milliseconds
      * @param nextResetMillis     next scheduled reset timestamp in unix epoch milliseconds, or {@code 0} if unscheduled
-     * @param reason              caller-provided reason; may be {@code null}, in which case {@code "unspecified"} is stored
+     * @param reason              caller-provided reason; may be {@code null}, in which case
+     *                            {@code "unspecified"} is stored
      */
     public SeasonResetEvent(long previousResetMillis,
                             long resetMillis,

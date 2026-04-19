@@ -1,7 +1,7 @@
 package com.skyblockexp.lifesteal.seasons.compatibility;
 
-import be.seeseemelk.mockbukkit.MockBukkit;
-import be.seeseemelk.mockbukkit.ServerMock;
+import org.mockbukkit.mockbukkit.MockBukkit;
+import org.mockbukkit.mockbukkit.ServerMock;
 import com.skyblockexp.lifesteal.seasons.EzSeasonsPlugin;
 import com.skyblockexp.lifesteal.seasons.command.SeasonPaperCommand;
 import com.skyblockexp.lifesteal.seasons.command.season.SeasonCommand;

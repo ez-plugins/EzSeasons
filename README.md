@@ -10,7 +10,8 @@ It runs timed season resets, sends reminder broadcasts, and provides `/season` s
 - Download **EzSeasons** from Modrinth: [https://modrinth.com/plugin/ezseasons](https://modrinth.com/plugin/ezseasons)
 - Optional companion plugin: [EzLifesteal](https://modrinth.com/plugin/ezlifesteal)
 - Supported server software: Paper / Bukkit-compatible server
-- API target: `1.21`
+- Requires: Java 25, Minecraft 26.1+
+- Plugin version: 2.0.0
 
 ## Quick setup (server owners)
 
