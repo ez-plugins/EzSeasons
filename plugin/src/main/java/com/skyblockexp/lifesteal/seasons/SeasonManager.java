@@ -84,6 +84,13 @@ public class SeasonManager {
         if (Bukkit.getServer() != null) {
             Bukkit.getPluginManager().callEvent(new SeasonResetEvent(previousReset, resetAt, nextResetMillis, reason));
         }
+        final SeasonsApiImpl api = plugin != null ? plugin.getSeasonsApi() : null;
+        if (api != null) {
+            for (com.skyblockexp.lifesteal.seasons.api.SeasonsIntegration integration : api.getIntegrations()) {
+                integration.onSeasonReset(previousReset, resetAt, nextResetMillis,
+                        reason != null ? reason : "unspecified");
+            }
+        }
         if (broadcastMessage != null && !broadcastMessage.isBlank() && Bukkit.getServer() != null) {
             Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', broadcastMessage));
         }

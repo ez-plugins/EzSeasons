@@ -45,4 +45,8 @@ public class EzSeasonsPlugin extends JavaPlugin {
     public SeasonManager getSeasonManager() {
         return registry.getSeasonManager();
     }
+
+    public SeasonsApiImpl getSeasonsApi() {
+        return registry.getSeasonsApi();
+    }
 }
